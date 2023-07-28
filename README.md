@@ -14,3 +14,15 @@ Cada exemplo está em uma pasta e dece ser executado de forma isolada de dentro 
 cd 01-hello
 python main.py
 ```
+
+# Tópicos:
+
+* 01-Hello
+    * O básico de como iniciar um programa com FastAPI e uvicorn
+    * Portas, host e como executar via uvcorn e app.run()
+    * /docs
+
+* 02-Rotas
+    * tópicos e subtópicos em uma rota.
+    * Tipos nas rotas via *type hint*
+    * Responses
