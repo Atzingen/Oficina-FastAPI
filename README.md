@@ -30,27 +30,21 @@ python main.py
     * curl e POSTMAN
 <br /><br />
 
-* 03-Media e outros tipos
-    * Tipos de Response
-    * Recebendo Imagens e outros arquivos
-    * Devolvendo dados
-    * Streaming
-<br /><br />
-
-* 04-DB
+* 03-DB
     * CRUD
     * ORM Sqlalchemy
     * Dataclasses
     * Sqlite
 <br /><br />
 
-* 05-Jinja
+* 04-Jinja
     * templates
     * variáveis dentro do html
     * estruturas de controle
 <br /><br />
 
-* 06-Deploy
+* 05-Deploy e extras
+    * Media
     * https
     * Certificados
     * Tokens
