@@ -1,8 +1,16 @@
 import random
 from typing import List
-from fastapi import FastAPI, Response, status
-from fastapi.responses import JSONResponse
+from fastapi import FastAPI, Response, status, Depends
 import uvicorn
+from sqlalchemy.orm import Session
+
+from config import SessionLocal, engine
+from crud import *
+import models
+
+
+models.Base.metadata.create_all(bind=engine)
+
 
 app = FastAPI(
     title="Demo API com FastAPI",
@@ -24,9 +32,14 @@ def home():
     return "home sweet home !!!"
 
 @app.get("/read_sensor/")
-def read_sensor(sensor_id: int = 1, qt: int = 1):
-    sensor_data = [random.random() for _ in range(qt)]
-    return JSONResponse(content=sensor_data)
+def read_sensor(sensor_id: 
+                int = 1, 
+                qt: int = 1,
+                db: Session = Depends(get_db)):
+    data = get_sensor(db, sensor_id, qt)
+    print(data)
+    # sensor_data = [random.random() for _ in range(qt)]
+    return data
 
 @app.post("/insert_sensor")
 def insert_sensor_post(numbers: List[int]):
