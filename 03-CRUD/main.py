@@ -36,26 +36,22 @@ def read_sensor(sensor_id:
                 int = 1, 
                 qt: int = 1,
                 db: Session = Depends(get_db)):
-    data = get_sensor(db, sensor_id, qt)
-    print(data)
-    # sensor_data = [random.random() for _ in range(qt)]
-    return data
+    return get_sensor(db, sensor_id, qt)
 
-@app.post("/insert_sensor")
-def insert_sensor_post(numbers: List[int]):
-    print(numbers)
+@app.post("/insert_sensores")
+def insert_sensor_post(sensor_id: int,
+                       values: List[int],
+                       db: Session = Depends(get_db)):
+    insert_sensor_data(db, sensor_id, values)
     return status.HTTP_202_ACCEPTED
 
 @app.get("/insert_sensor/{sensor_id}/{sensor_value}")
 def insert_sensor(sensor_id: int, 
            sensor_value: float,
-           response: Response):
-    print(sensor_id, sensor_value)
-    if sensor_id > 0 and sensor_id < 10:
-        response.status_code = status.HTTP_202_ACCEPTED
-    else:
-        response.status_code = status.HTTP_403_FORBIDDEN
-    return response
+           db: Session = Depends(get_db)):
+    insert_sensor_data(db, sensor_id, [sensor_value])
 
 if __name__ == '__main__':
-    uvicorn.run('main:app', reload=True)
+    uvicorn.run('main:app', 
+                port=8000,
+                reload=True)
