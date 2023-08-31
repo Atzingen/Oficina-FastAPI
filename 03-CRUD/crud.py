@@ -28,4 +28,4 @@ def insert_sensor_data(db: SessionLocal,
                         tempo=datetime.now(), 
                         sensor_id=sensor_id))
     db.add_all(dados)
-    db.commit()
+    response = db.commit()

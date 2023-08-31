@@ -4,6 +4,7 @@ from fastapi import FastAPI, Response, status
 from fastapi.responses import JSONResponse
 import uvicorn
 
+
 app = FastAPI(
     title="Demo API com FastAPI",
     version="1.0.0",
